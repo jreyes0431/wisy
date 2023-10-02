@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyA0rnnz6WB-PY4wNvWE5c7VCGZxu4sMIsM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>788343354933</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.wisyPhotoApp.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>wisy-7597f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>wisy-7597f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:788343354933:ios:6e8f682fe49cd4a2c9e37c</string>
+</dict>
+</plist>

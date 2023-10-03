@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisy_photo_app/common/customs.dart';
+import 'ui/views/views.dart';
 
 void main() {
   runApp(const MainApp());
@@ -18,11 +19,7 @@ class MainApp extends StatelessWidget {
         ),
         colorSchemeSeed: CustomColor.primaryRed,
       ),
-      home: const Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      home: const LoginPage(),
     );
   }
 }

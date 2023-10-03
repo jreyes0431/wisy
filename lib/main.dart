@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wisy_photo_app/common/customs.dart';
 
 void main() {
   runApp(const MainApp());
@@ -15,6 +16,7 @@ class MainApp extends StatelessWidget {
         textTheme: GoogleFonts.capriolaTextTheme(
           Theme.of(context).textTheme,
         ),
+        colorSchemeSeed: CustomColor.primaryRed,
       ),
       home: const Scaffold(
         body: Center(

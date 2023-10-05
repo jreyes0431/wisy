@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wisy_photo_app/ui/views/views.dart';
@@ -38,6 +40,27 @@ final router = GoRouter(
         state: state,
         child: const HomePage(),
       ),
+    ),
+    GoRoute(
+      path: '/take-photo',
+      pageBuilder: (BuildContext context, GoRouterState state) =>
+          buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: const CameraPage(),
+      ),
+    ),
+    GoRoute(
+      path: '/edit-photo',
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        File file = state.extra as File;
+
+        return buildPageWithDefaultTransition(
+          context: context,
+          state: state,
+          child: EditingPage(file: file),
+        );
+      },
     ),
   ],
 );

@@ -8,6 +8,12 @@ class EditingPage extends ConsumerStatefulWidget {
 }
 
 class _EditingPageState extends ConsumerState<EditingPage> {
+  @override
+  void dispose() {
+    context.go("/home");
+    super.dispose();
+  }
+
   Color photoCardBgColor = CustomColor.primaryRed;
   @override
   Widget build(BuildContext context) {
@@ -16,17 +22,18 @@ class _EditingPageState extends ConsumerState<EditingPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const Padding(
+                padding: EdgeInsets.all(8),
+                child: Align(
+                  alignment: Alignment(-1, 0),
+                  child: BackButton(),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(8),
-                // TODO(Jose): Change this to a real photo
                 child: PhotoCard(
                   color: photoCardBgColor,
-                  photo: Photo(
-                    url: 'sdsdsd.com',
-                    title: '',
-                    uploadDate: DateTime.now(),
-                    id: '',
-                  ),
+                  file: widget.file,
                 ),
               ),
               const SizedBox(height: 40),

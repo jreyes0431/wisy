@@ -3,11 +3,11 @@ part of widgets;
 class PhotoCard extends StatelessWidget {
   const PhotoCard({
     super.key,
-    required this.photo,
+    required this.file,
     required this.color,
   });
 
-  final Photo photo;
+  final File file;
   final Color color;
 
   @override
@@ -23,10 +23,11 @@ class PhotoCard extends StatelessWidget {
         ),
         child: SizedBox(
           height: 380,
+          width: double.infinity,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: Image.network(
-              photo.url,
+            child: Image.file(
+              file,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) => SizedBox.expand(
                 child: ColoredBox(

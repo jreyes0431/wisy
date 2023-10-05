@@ -628,6 +628,8 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - better_open_file (0.0.1):
+    - Flutter
   - BoringSSL-GRPC (0.0.24):
     - BoringSSL-GRPC/Implementation (= 0.0.24)
     - BoringSSL-GRPC/Interface (= 0.0.24)
@@ -749,6 +751,7 @@ PODS:
   - PromisesObjC (2.3.1)
 
 DEPENDENCIES:
+  - better_open_file (from `.symlinks/plugins/better_open_file/ios`)
   - camerawesome (from `.symlinks/plugins/camerawesome/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
@@ -772,6 +775,8 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  better_open_file:
+    :path: ".symlinks/plugins/better_open_file/ios"
   camerawesome:
     :path: ".symlinks/plugins/camerawesome/ios"
   cloud_firestore:
@@ -785,6 +790,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   abseil: 926fb7a82dc6d2b8e1f2ed7f3a718bce691d1e46
+  better_open_file: 03cf320415d4d3f46b6e00adc4a567d76c1a399d
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   camerawesome: 1e06540f60158809bc70f398ed1ac2cf93fe4188
   cloud_firestore: ac000d8c5a79d57dc69238ea06bb422880fb825e

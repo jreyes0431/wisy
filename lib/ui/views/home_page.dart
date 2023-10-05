@@ -53,9 +53,8 @@ class HomePage extends ConsumerWidget {
               ],
               ...List<Widget>.generate(
                 currentUser.photos.length,
-                (index) => Container(
-                  color: Colors.amber,
-                  height: 30,
+                (int index) => PhotoThumbnail(
+                  photo: currentUser.photos[index],
                 ),
               )
             ],

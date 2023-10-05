@@ -51,6 +51,7 @@ class LoginPage extends ConsumerWidget {
                 ),
                 onPressed: () {
                   ref.read(userProvider.notifier).updateUserData(ref);
+                  context.go("/home");
                 },
                 child: const Text(
                   "Entrar",

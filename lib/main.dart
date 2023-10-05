@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisy_photo_app/common/customs.dart';
-import 'ui/views/views.dart';
+import 'package:wisy_photo_app/common/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,14 +16,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       theme: ThemeData(
         textTheme: GoogleFonts.capriolaTextTheme(
           Theme.of(context).textTheme,
         ),
         colorSchemeSeed: CustomColor.primaryRed,
       ),
-      home: const LoginPage(),
     );
   }
 }

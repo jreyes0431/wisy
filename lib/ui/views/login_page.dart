@@ -18,7 +18,7 @@ class LoginPage extends ConsumerWidget {
               const Padding(
                 padding: EdgeInsets.all(40),
                 child: Text(
-                  "Wisy\ntu app de fotos en la nube",
+                  "Wisy,\nyour personal cloud photo app",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -33,7 +33,7 @@ class LoginPage extends ConsumerWidget {
                   controller: idController,
                   maxLines: 1,
                   decoration: InputDecoration(
-                    labelText: "ID de usuario",
+                    labelText: "User ID",
                     fillColor: Colors.white,
                     filled: true,
                     border: UnderlineInputBorder(
@@ -54,7 +54,7 @@ class LoginPage extends ConsumerWidget {
                   context.push("/home");
                 },
                 child: const Text(
-                  "Entrar",
+                  "Access",
                   style: TextStyle(
                     fontSize: 20,
                   ),

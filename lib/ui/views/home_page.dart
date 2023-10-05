@@ -40,7 +40,9 @@ class HomePage extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    context.push('/take-photo');
+                  },
                   child: const Text("New photo"),
                 ),
               ),

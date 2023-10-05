@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:wisy_photo_app/model/photo.dart';
+part of service;
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final CollectionReference _userCollection = _firestore.collection('users');
@@ -18,5 +16,20 @@ class FirestoreDB {
       },
     );
     return photos;
+  }
+
+  Future<void> updateUserCollection({
+    required User user,
+    required Photo photo,
+  }) async {
+    DocumentReference newDoc =
+        _userCollection.doc(user.id).collection('photos').doc();
+
+    await newDoc.set(<String, dynamic>{
+      "id": newDoc.id,
+      "url": photo.url,
+      "uploadDate": photo.uploadDate.toString(),
+      "title": photo.title,
+    });
   }
 }

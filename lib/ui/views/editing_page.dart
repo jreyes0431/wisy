@@ -8,97 +8,114 @@ class EditingPage extends ConsumerStatefulWidget {
 }
 
 class _EditingPageState extends ConsumerState<EditingPage> {
-  @override
-  void dispose() {
-    context.go("/home");
-    super.dispose();
-  }
-
   Color photoCardBgColor = CustomColor.primaryRed;
+  bool isSendingData = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(8),
-                child: Align(
-                  alignment: Alignment(-1, 0),
-                  child: BackButton(),
+        child: Visibility(
+          visible: !isSendingData,
+          replacement: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "We are sending your photo to the server...",
+                  style: CustomParagraphStyle.disclaimer,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: PhotoCard(
-                  color: photoCardBgColor,
-                  file: widget.file,
+                const SizedBox(height: 20),
+                const CircularProgressIndicator.adaptive(),
+              ],
+            ),
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Align(
+                    alignment: Alignment(-1, 0),
+                    child: BackButton(),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 40),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircleClickeableColor(
-                    callback: () {
-                      setState(() {
-                        photoCardBgColor = CustomColor.primaryRed;
-                      });
-                    },
-                    color: CustomColor.primaryRed,
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: PhotoCard(
+                    color: photoCardBgColor,
+                    file: widget.file,
                   ),
-                  const SizedBox(width: 10),
-                  CircleClickeableColor(
-                    callback: () {
-                      setState(() {
-                        photoCardBgColor = CustomColor.primaryBlue;
-                      });
-                    },
-                    color: CustomColor.primaryBlue,
+                ),
+                const SizedBox(height: 40),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircleClickeableColor(
+                      callback: () {
+                        setState(() {
+                          photoCardBgColor = CustomColor.primaryRed;
+                        });
+                      },
+                      color: CustomColor.primaryRed,
+                    ),
+                    const SizedBox(width: 10),
+                    CircleClickeableColor(
+                      callback: () {
+                        setState(() {
+                          photoCardBgColor = CustomColor.primaryBlue;
+                        });
+                      },
+                      color: CustomColor.primaryBlue,
+                    ),
+                    const SizedBox(width: 10),
+                    CircleClickeableColor(
+                      callback: () {
+                        setState(() {
+                          photoCardBgColor = CustomColor.primaryRose;
+                        });
+                      },
+                      color: CustomColor.primaryRose,
+                    ),
+                    const SizedBox(width: 10),
+                    CircleClickeableColor(
+                      callback: () {
+                        setState(() {
+                          photoCardBgColor = CustomColor.lightPurple;
+                        });
+                      },
+                      color: CustomColor.lightPurple,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 40),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
+                    ),
+                    backgroundColor: MaterialStatePropertyAll(photoCardBgColor),
                   ),
-                  const SizedBox(width: 10),
-                  CircleClickeableColor(
-                    callback: () {
-                      setState(() {
-                        photoCardBgColor = CustomColor.primaryRose;
-                      });
-                    },
-                    color: CustomColor.primaryRose,
-                  ),
-                  const SizedBox(width: 10),
-                  CircleClickeableColor(
-                    callback: () {
-                      setState(() {
-                        photoCardBgColor = CustomColor.lightPurple;
-                      });
-                    },
-                    color: CustomColor.lightPurple,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 40),
-              ElevatedButton(
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
+                  onPressed: () async {
+                    setState(() {
+                      isSendingData = true;
+                    });
+                    await ref
+                        .read(userProvider.notifier)
+                        .storagePhoto(ref, widget.file)
+                        .then((value) => context.go("/home"));
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "Save",
+                      style: TextStyle(fontSize: 24),
                     ),
                   ),
-                  backgroundColor: MaterialStatePropertyAll(photoCardBgColor),
                 ),
-                onPressed: () {
-                  context.go("/home");
-                },
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "Save",
-                    style: TextStyle(fontSize: 24),
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

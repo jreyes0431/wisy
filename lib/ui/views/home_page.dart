@@ -18,7 +18,7 @@ class HomePage extends ConsumerWidget {
                 children: [
                   BackButton(
                     onPressed: () {
-                      context.pop();
+                      context.canPop() ? context.pop() : context.push("/login");
                     },
                   ),
                   Text(

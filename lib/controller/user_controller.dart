@@ -17,7 +17,7 @@ class UserNotifier extends StateNotifier<User> {
       List<Photo> userPhotos = await ref
           .read(userRepositoryProvider)
           .getUserPhotos(id: idController.text);
-      state = state.copyWith(photos: userPhotos);
+      state = state.copyWith(photos: userPhotos, id: idController.text);
     } catch (e) {
       log(e.toString());
     }

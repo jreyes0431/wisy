@@ -1,10 +1,13 @@
 part of views;
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final TextEditingController idController =
+        ref.watch(userProvider.notifier).idController;
+
     return Scaffold(
       backgroundColor: CustomColor.primaryRed,
       body: SingleChildScrollView(
@@ -15,10 +18,11 @@ class LoginPage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(40),
                 child: Text(
-                  "Hola! Esto es Wisy, tu app de almacenamiento de fotos",
+                  "Wisy\ntu app de fotos en la nube",
                   style: TextStyle(
+                    fontWeight: FontWeight.bold,
                     color: Colors.white,
-                    fontSize: 32,
+                    fontSize: 48,
                   ),
                 ),
               ),
@@ -26,6 +30,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 width: 200,
                 child: TextFormField(
+                  controller: idController,
                   maxLines: 1,
                   decoration: InputDecoration(
                     labelText: "ID de usuario",
@@ -44,7 +49,9 @@ class LoginPage extends StatelessWidget {
                   backgroundColor:
                       MaterialStatePropertyAll(CustomColor.primaryRose),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  ref.read(userProvider.notifier).updateUserData(ref);
+                },
                 child: const Text(
                   "Entrar",
                   style: TextStyle(

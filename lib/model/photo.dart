@@ -12,10 +12,16 @@ class Photo {
   });
 
   factory Photo.fromJson(Map<String, dynamic> json) {
+    DateTime dateStamp;
+    try {
+      dateStamp = DateTime.parse(json['uploadDate']);
+    } catch (_) {
+      dateStamp = DateTime.now();
+    }
     return Photo(
       url: json['url'] ?? '',
       title: json['title'] ?? '',
-      uploadDate: DateTime.parse(json['uploadDate'] ?? ''),
+      uploadDate: dateStamp,
       id: json['id'] ?? '',
     );
   }

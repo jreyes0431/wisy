@@ -7,41 +7,45 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final User currentUser = ref.watch(userProvider);
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SafeArea(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
               const SizedBox(height: 16),
-              Align(
-                alignment: const Alignment(0.9, 0),
-                child: Text(
-                  "Are you ready for a new one?",
-                  textAlign: TextAlign.right,
-                  style: CustomTitleStyle.regular,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  BackButton(
+                    onPressed: () {
+                      context.pop();
+                    },
+                  ),
+                  Text(
+                    "Ready for a new one?",
+                    overflow: TextOverflow.clip,
+                    textAlign: TextAlign.right,
+                    style: CustomTitleStyle.regular,
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
               Align(
-                alignment: const Alignment(0.9, 0),
+                alignment: Alignment.topRight,
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
+                    ),
+                  ),
                   onPressed: () {},
                   child: const Text("New photo"),
                 ),
               ),
               const SizedBox(height: 8),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Divider(),
-              ),
-              const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Text(
-                  "Here... this is your ocean of photos",
-                  textAlign: TextAlign.center,
-                  style: CustomTitleStyle.grandTitle,
-                ),
-              ),
+              const Divider(),
               const SizedBox(height: 8),
               if (currentUser.photos.isEmpty) ...[
                 const SizedBox(height: 220),
@@ -51,12 +55,28 @@ class HomePage extends ConsumerWidget {
                   style: CustomParagraphStyle.disclaimer,
                 ),
               ],
-              ...List<Widget>.generate(
-                currentUser.photos.length,
-                (int index) => PhotoThumbnail(
-                  photo: currentUser.photos[index],
+              Expanded(
+                child: MasonryGridView.count(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  itemCount: currentUser.photos.length,
+                  itemBuilder: (context, index) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.network(
+                        currentUser.photos[index].url,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return const CircularProgressIndicator.adaptive();
+                        },
+                        errorBuilder: (context, error, stackTrace) =>
+                            const SizedBox.shrink(),
+                      ),
+                    );
+                  },
                 ),
-              )
+              ),
             ],
           ),
         ),
